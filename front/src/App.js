@@ -1,11 +1,14 @@
 import './App.css';
 import Home from './pages/Home';
+import { CoinApiProvider } from './contexts/coinapi'
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <CoinApiProvider>
+      <div className="App">
+        <Home />
+      </div>
+    </CoinApiProvider>
   );
 }
 
