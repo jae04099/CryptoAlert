@@ -2,6 +2,7 @@
 
 #### 내가 선택한 코인이 심상치 않은 금액에 다다르면 메세지를 보내드려요.
 #### 알림을 받고 싶은 금액만 적어 보내주세요!
+#### I can speak English! If you have any question, feel free to contact me anytime -> 'gyurilee.me@gmail.com'
 
 
 ## ✔️ 메인
