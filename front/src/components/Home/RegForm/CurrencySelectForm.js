@@ -15,7 +15,7 @@ function CurrencySelectForm(props){
                 setCoinNameList([])
                 setIsLoading(true)
                 const res = await axios.get('https://api.upbit.com/v1/market/all')
-                setCoinNameList(res.data)
+                setCoinNameList(_.sortBy(res.data, 'korean_name'))
             }
             catch (error){
                 setIsError(true)
@@ -24,6 +24,10 @@ function CurrencySelectForm(props){
         }
         fetchCoinNames()
     }, [])
+
+    useEffect(()=> {
+        console.log(coinIdx)
+    },[coinIdx])
 
     const handleChange = async e => {
         const selectedIndex = e.target.options.selectedIndex;
