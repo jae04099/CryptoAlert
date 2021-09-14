@@ -68,7 +68,6 @@ function webSocket(coin_name, coin_code, alert_price, nickname, phone_number) {
         websocket.send(message);
     }
 
-
     init()
 }
 

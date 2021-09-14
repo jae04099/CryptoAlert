@@ -4,11 +4,11 @@ import { CoinApiProvider } from './contexts/coinapi'
 
 function App() {
   return (
-    <CoinApiProvider>
-      <div className="App">
-        <Home />
-      </div>
-    </CoinApiProvider>
+      <CoinApiProvider>
+        <div className="App">
+          <Home />
+        </div>
+      </CoinApiProvider>
   );
 }
 

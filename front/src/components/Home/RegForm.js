@@ -1,61 +1,9 @@
-import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useContext } from 'react'
+import { CoinApiContext } from '../../contexts/coinapi'
 import CurrencySelectForm from './RegForm/CurrencySelectForm';
 
 const RegForm = () => {
-
-    // const [submitted, setSubmitted] = useState(false);
-    // const [errors, setErrors] = useState({});
-    const [coin_name, setCoinName] = useState('');
-    const [coin_code, setCoinCode] = useState('');
-    const [formInfo, setFormInfo] = useState({
-        alert_price: '',
-        nickname: "",
-        phone_number: "",
-        agreement: false
-    });
-
-
-    const { alert_price, nickname, phone_number, agreement } = formInfo
-
-    const handleChange = e => {
-        const { value, name } = e.target;
-        setFormInfo({
-            ...formInfo,
-            [name]: value
-        })
-
-    }
-    const handleReset = () => {
-        setFormInfo({
-            alert_price: '',
-            nickname: "",
-            phone_number: "",
-            agreement: false
-        })
-        setCoinCode('')
-        setCoinName('')
-    }
-
-    const handleSubmit = async e => {
-        e.preventDefault();
-        axios.post('http://localhost:5000/submit', {
-            coin_name,
-            coin_code,
-            alert_price,
-            nickname,
-            phone_number,
-            agreement
-        })
-        try {
-            alert('submitted!')
-            handleReset()
-        }
-        catch (err) {
-            console.log(err)
-        }
-
-    }
+    const { handleFormChange, alert_price, nickname, phone_number, agreement, handleSubmit } = useContext(CoinApiContext);
 
     return (
         <div className="min-h-full p-0 sm:p-12">
@@ -63,14 +11,14 @@ const RegForm = () => {
                 <h1 className="text-2xl font-bold mb-8">알림신청</h1>
                 <form id="form" noValidate>
                     <label className="font-bold text-sm mb-2 ml-1">가상화폐 종류</label>
-                    <CurrencySelectForm setCoinName={setCoinName} setCoinCode={setCoinCode} />
+                    <CurrencySelectForm />
                     <div className="relative z-0 w-full mb-5">
                         <input
                             type="number"
                             name="alert_price"
                             placeholder=" "
                             className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                            onChange={handleChange}
+                            onChange={handleFormChange}
                             value={alert_price}
                         />
                         {/* <div className="absolute top-0 left-0 mt-3 ml-1 text-gray-400"></div> */}
@@ -83,7 +31,7 @@ const RegForm = () => {
                             name="nickname"
                             placeholder=" "
                             className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                            onChange={handleChange}
+                            onChange={handleFormChange}
                             value={nickname}
                         />
                         <label htmlFor="nickname" className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">닉네임</label>
@@ -95,7 +43,7 @@ const RegForm = () => {
                             name="phone_number"
                             placeholder=" "
                             className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
-                            onChange={handleChange}
+                            onChange={handleFormChange}
                             value={phone_number}
                         />
                         <label htmlFor="phone" className="absolute duration-300 top-3 -z-1 origin-0 text-gray-500">전화 번호</label>
@@ -111,7 +59,7 @@ const RegForm = () => {
                                     name="agreement"
                                     value='1'
                                     checked={agreement === '1' ? true : false}
-                                    onChange={handleChange}
+                                    onChange={handleFormChange}
                                     className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                                 />
                                 동의
@@ -122,7 +70,7 @@ const RegForm = () => {
                                     name="agreement"
                                     value='2'
                                     checked={agreement === '2' ? true : false}
-                                    onChange={handleChange}
+                                    onChange={handleFormChange}
                                     className="mr-2 text-black border-2 border-gray-300 focus:border-gray-300 focus:ring-black"
                                 />
                                 미동의
